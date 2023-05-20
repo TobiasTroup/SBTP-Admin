@@ -8,35 +8,35 @@ BLUE="\033[1;34m"
 NOCOLOR="\033[0m"
 
 # global Variable
-runNumber=0
 
 # Writing a = sign multiple times in a row
 equalSign() {
-    local lengthEqualSign=runNumber
-    for (( i=0; i<lengthEqualSign; i++));
+    for (( i=0; i<$1; i++));
     do
         # echo without newline
         echo -n "="
     done
-    echo ""
+    echo
 }
 
 startScreen () {
-    echo ""
+    echo
     # Reading a file
     startDescription=`cat .data/greetingWindow.txt`
-    # number of the equal signs to print out
-    runNumber=32
-    equalSign
+    # equal signs to print out
+    equalSign 32
     # interpretation of escaped characters
     echo -e "${BLUE}$startDescription${NOCOLOR}"
-    equalSign
-    echo ""
+    # equal signs to print out
+    equalSign 32
+    echo
 }
 
 login() {
     read -p "[1] Username: " username
+#    echo -n "[2] Password: "
     read -s -p "[2] Password: " password
+    echo
 }
 
 checkLogin() {
@@ -44,9 +44,13 @@ checkLogin() {
     login
 }
 
+alreadyLoggedIn() {
+    return 0
+}
+
 main() {
     startScreen
-    checkLogin
+    alreadyLoggedIn
 }
 
 main
