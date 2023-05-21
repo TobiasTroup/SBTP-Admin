@@ -9,15 +9,8 @@ NOCOLOR="\033[0m"
 
 # global Variable
 
-# Writing a = sign multiple times in a row
-equalSign() {
-    for (( i=0; i<$1; i++));
-    do
-        # echo without newline
-        echo -n "="
-    done
-    echo
-}
+# load other scripts
+. utility.sh
 
 startScreen () {
     echo
@@ -34,7 +27,6 @@ startScreen () {
 
 login() {
     read -p "[1] Username: " username
-#    echo -n "[2] Password: "
     read -s -p "[2] Password: " password
     echo
 }
